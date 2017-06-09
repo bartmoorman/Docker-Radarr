@@ -1,11 +1,3 @@
-### Build
-```
-docker build \
---tag radarr \
-https://github.com/iVirus/Docker-Radarr.git
-```
-
-### Run
 ```
 docker run \
 --rm \
@@ -18,5 +10,5 @@ docker run \
 --volume transmission-public-data:/transmission-public-data \
 --volume transmission-private-data:/transmission-private-data \
 --publish 7878:7878 \
-radarr
+bmoorman/radarr
 ```
