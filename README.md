@@ -3,7 +3,7 @@ docker run \
 --rm \
 --detach \
 --init \
--name radarr \
+--name radarr \
 --network backend \
 --volume /mnt/radarr:/data \
 --volume /mnt/media:/media \
