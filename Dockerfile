@@ -1,5 +1,7 @@
 FROM bmoorman/ubuntu
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 WORKDIR /opt
 
 RUN apt-get update && \
@@ -11,10 +13,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY radarr/ /etc/radarr/
-
 VOLUME /data
 
-CMD ["/etc/radarr/start.sh"]
+CMD ["mono", "/opt/Radarr/Radarr.exe" ,"--nobrowser" ,"--data=/data"]
 
 EXPOSE 7878
