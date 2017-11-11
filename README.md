@@ -5,7 +5,6 @@ docker run \
 --init \
 --name radarr \
 --hostname radarr \
---network backend \
 --volume radarr-data:/data \
 --volume /mnt/media:/media \
 --volume sabnzbd-data:/sabnzbd-data \
