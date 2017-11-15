@@ -19,7 +19,7 @@ RUN apt-get update \
 
 COPY radarr/ /etc/radarr/
 
-VOLUME /data
+VOLUME /config
 
 EXPOSE 7878
 

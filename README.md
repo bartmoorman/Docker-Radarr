@@ -5,7 +5,7 @@ docker run \
 --init \
 --name radarr \
 --hostname radarr \
---volume radarr-data:/data \
+--volume radarr-config:/config \
 --volume /mnt/media:/media \
 --volume sabnzbd-data:/sabnzbd-data \
 --volume transmission-public-data:/transmission-public-data \

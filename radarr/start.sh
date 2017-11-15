@@ -1,5 +1,5 @@
 #!/bin/bash
 exec $(which mono) \
     /opt/Radarr/Radarr.exe \
-    --data=/data \
+    --data=/config \
     --nobrowser
