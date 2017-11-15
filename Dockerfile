@@ -17,8 +17,10 @@ RUN apt-get update \
  && apt-get clean \
  && rm --recursive --force /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY radarr/ /etc/radarr/
+
 VOLUME /data
 
 EXPOSE 7878
 
-CMD ["mono", "/opt/Radarr/Radarr.exe" ,"--nobrowser" ,"--data=/data"]
+CMD ["/etc/radarr/start.sh"]
