@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu
+FROM bmoorman/ubuntu:xenial
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
