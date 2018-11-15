@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:xenial
+FROM bmoorman/ubuntu:bionic
 
 ENV RADARR_PORT="7878"
 
@@ -11,7 +11,7 @@ RUN apt-get update \
     curl \
     jq \
     libmono-cil-dev \
-    libcurl3 \
+    libcurl4 \
     mediainfo \
  && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases" | jq --raw-output '.[0].assets[] | select(.name | contains("linux.tar.gz")) | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
