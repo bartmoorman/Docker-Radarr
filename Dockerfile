@@ -6,7 +6,9 @@ ARG DEBIAN_FRONTEND="noninteractive"
 
 WORKDIR /opt
 
-RUN apt-get update \
+RUN echo 'deb https://download.mono-project.com/repo/ubuntu stable-bionic main' > /etc/apt/sources.list.d/mono-official-stable.list \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D3D831EF \
+ && apt-get update \
  && apt-get install --yes --no-install-recommends \
     curl \
     jq \
