@@ -3,6 +3,7 @@
 docker run \
 --detach \
 --name radarr \
+--restart unless-stopped \
 --publish 7878:7878 \
 --volume radarr-config:/config \
 --volume /mnt/media:/mnt/media \
@@ -18,6 +19,7 @@ services:
   radarr:
     image: bmoorman/radarr:latest
     container_name: radarr
+    restart: unless-stopped
     ports:
       - "7878:7878"
     volumes:
@@ -31,3 +33,8 @@ volumes:
   sabnzbd-data:
   transmission-data:
 ```
+
+### Environment Variables
+|Variable|Description|Default|
+|--------|-----------|-------|
+|TZ|Sets the timezone|`America/Denver`|

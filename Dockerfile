@@ -1,8 +1,8 @@
 FROM bmoorman/ubuntu:bionic
 
-ENV RADARR_PORT="7878"
+ARG DEBIAN_FRONTEND=noninteractive
 
-ARG DEBIAN_FRONTEND="noninteractive"
+ENV RADARR_PORT=7878
 
 WORKDIR /opt
 
