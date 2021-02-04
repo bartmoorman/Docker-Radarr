@@ -1,4 +1,4 @@
-FROM bmoorman/ubuntu:bionic
+FROM bmoorman/ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -10,7 +10,7 @@ RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
     curl \
     jq \
-    libicu60 \
+    libicu66 \
     mediainfo \
  && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases/latest" | jq -r '.assets[] | select(.name | contains("linux-core-x64.tar.gz")) | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
