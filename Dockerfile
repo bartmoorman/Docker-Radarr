@@ -1,6 +1,7 @@
 FROM bmoorman/ubuntu:focal
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive \
+    TARGETARCH
 
 ENV RADARR_PORT=7878
 
@@ -8,11 +9,11 @@ WORKDIR /opt
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-    curl \
     jq \
     libicu66 \
     mediainfo \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases/latest" | jq -r '.assets[] | select(.name | contains("linux-core-x64.tar.gz")) | .browser_download_url') \
+ && if [ "${TARGETARCH}" = "amd64" ]; then arch=x64; else arch=${TARGETARCH}; fi \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases/latest" | jq --arg arch ${arch} --raw-output '.assets[] | select(.name | endswith("linux-core-" + $arch + ".tar.gz")) | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \
