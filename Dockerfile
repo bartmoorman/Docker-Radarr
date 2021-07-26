@@ -1,7 +1,8 @@
 FROM bmoorman/ubuntu:focal
 
 ARG DEBIAN_FRONTEND=noninteractive \
-    TARGETARCH
+    TARGETOS=linux \
+    TARGETARCH=amd64
 
 ENV RADARR_PORT=7878
 
@@ -12,8 +13,8 @@ RUN apt-get update \
     jq \
     libicu66 \
     mediainfo \
- && if [ "${TARGETARCH}" = "amd64" ]; then arch=x64; else arch=${TARGETARCH}; fi \
- && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases/latest" | jq --arg arch ${arch} --raw-output '.assets[] | select(.name | endswith("linux-core-" + $arch + ".tar.gz")) | .browser_download_url') \
+ && if [ "${TARGETARCH}" = "amd64" ]; then target=${TARGETOS}-core-x64; else target=${TARGETOS}-core-${TARGETARCH}; fi \
+ && fileUrl=$(curl --silent --location "https://api.github.com/repos/Radarr/Radarr/releases/latest" | jq --arg target ${target} --raw-output '.assets[] | select(.name | endswith($target + ".tar.gz")) | .browser_download_url') \
  && curl --silent --location "${fileUrl}" | tar xz \
  && apt-get autoremove --yes --purge \
  && apt-get clean \
